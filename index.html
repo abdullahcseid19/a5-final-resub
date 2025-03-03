@@ -3,9 +3,180 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>DevBoard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        let tasksAssigned = 6; 
+        let navbarTaskCount = 23;
+        function ttc() {
+            document.getElementById("taskAssignedCountMain").textContent = tasksAssigned;
+        }
+        function ntc() {
+            document.getElementById("taskAssignedCountNavbar").textContent = navbarTaskCount;
+        }
+        function seecm() {
+            const messageDiv = document.getElementById("completionMessage");
+            messageDiv.classList.remove("hidden"); 
+        }
+        function cecam() {
+            const messageDiv = document.getElementById("completionMessage");
+            messageDiv.classList.add("hidden"); 
+        }
+        function mc(button) {
+            if (button.textContent !== "Completed") {
+                button.textContent = "Completed";
+                button.classList.add("bg-gray-400", "cursor-not-allowed");
+                button.disabled = true;
+                tasksAssigned--;
+                navbarTaskCount++;
+                ttc();
+                ntc();
+                seecm();
+                addActivityLog(button.parentElement.querySelector("p.font-semibold").textContent);
+            }
+        }
+
+        function addActivityLog(taskName) {
+            const logContainer = document.getElementById("activityLog");
+            const logEntry = document.createElement("p");
+            const currentTime = new Date().toLocaleString();
+            logEntry.textContent = `You have Completed the task '${taskName}' at ${currentTime}`;
+            logContainer.appendChild(logEntry);
+        }
+
+        function Tak() {
+            tasksAssigned++;
+            ttc();
+        }
+        function dekhi() {
+            const blogModal = document.getElementById("blogModal");
+            blogModal.classList.remove("hidden"); 
+        }
+        function jaw() {
+            const blogModal = document.getElementById("blogModal");
+            blogModal.classList.add("hidden"); 
+        }
+        function kellafote() {
+            document.getElementById("activityLog").innerHTML = "";
+        }
+
+        function gigiti() {
+            document.body.classList.toggle("bg-gray-900");
+            document.body.classList.toggle("text-white");
+        }
+           window.onload = () => {
+            ttc(); 
+            ntc(); 
+        };
+    </script>
 </head>
-<body>
-    
+<body class="bg-gray-100 p-6">
+    <!-- nav section -->
+    <nav class="bg-white p-4 shadow-md flex justify-between items-center rounded-lg">
+        <h1 class="text-xl font-bold text-blue-600 flex items-center"> <img src="assets/logo.png" alt=""> Dev<span class="text-black">Board</span></h1>
+        <div class="flex items-center gap-4">
+            <img src="assets/checkbox.png" alt="">
+            <span id="taskAssignedCountNavbar" class="bg-blue-100 text-blue-600 px-3 py-1 rounded-lg font-semibold">23</span>
+            <button class="w-8 h-8 bg-gray-200 rounded-full" onclick="gigiti()">
+                <img src="assets/theme-btn.png" alt="">
+            </button>
+        </div>
+    </nav>
+    <div class="mt-6 grid grid-cols-4 gap-4">
+        <div class="col-span-3 grid gap-4">
+            <div class="bg-white p-6 rounded-lg shadow-md flex justify-between items-center">
+                <div>
+                    <p class="text-lg font-semibold flex"> <img src="assets/checkbox.png" alt=""> Task Assigned</p>
+                    <p id="taskAssignedCountMain" class="text-3xl font-bold text-blue-600">6</p>
+                </div>
+                <div class="bg-gradient-to-r from-blue-500 to-indigo-500 text-white p-4 rounded-lg cursor-pointer" onclick="dekhi()">
+                    <p class="font-semibold flex items-center"> <img src="assets/board.png" alt=""> Discover Something New Today!</p>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="text-gray-600"><img src="assets/calender.png" alt=""></span>
+                    <p class="text-gray-700">Tue, Feb 25 2025</p>
+                </div>
+            </div>
+            <div class="grid grid-cols-3 gap-4">
+                <div class="bg-white p-4 rounded-lg shadow-md">
+                    <h3 class="text-gray-500 text-sm">Shop Ease</h3>
+                    <p class="font-semibold">Fix Mobile Button Issue</p>
+                    <p class="text-gray-600 text-sm">A card component has a figure, a body part...</p>
+                    <p class="text-gray-500 text-xs mt-2">Deadline: 21 March 2025</p>
+                    <button class="bg-blue-600 text-white px-3 py-1 rounded-lg mt-2" onclick="mc(this)">Complete</button>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-md">
+                    <h3 class="text-gray-500 text-sm">Soft Pay</h3>
+                    <p class="font-semibold">Add Pay Success Modal</p>
+                    <p class="text-gray-600 text-sm">A card component has a figure, a body part...</p>
+                    <p class="text-gray-500 text-xs mt-2">Deadline: 25 March 2025</p>
+                    <button class="bg-blue-600 text-white px-3 py-1 rounded-lg mt-2" onclick="mc(this)">Complete</button>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-md">
+                    <h3 class="text-gray-500 text-sm">Meta</h3>
+                    <p class="font-semibold">Add New Reaction</p>
+                    <p class="text-gray-600 text-sm">A card component has a figure, a body part...</p>
+                    <p class="text-gray-500 text-xs mt-2">Deadline: 31 March 2025</p>
+                    <button class="bg-blue-600 text-white px-3 py-1 rounded-lg mt-2" onclick="mc(this)">Complete</button>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-md">
+                    <h3 class="text-gray-500 text-sm">Programming Hero</h3>
+                    <p class="font-semibold">Fix Video Loading Issue</p>
+                    <p class="text-gray-600 text-sm">A card component has a figure, a body part...</p>
+                    <p class="text-gray-500 text-xs mt-2">Deadline: 21 March 2025</p>
+                    <button class="bg-blue-600 text-white px-3 py-1 rounded-lg mt-2" onclick="mc(this)">Complete</button>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-md">
+                    <h3 class="text-gray-500 text-sm">Google LLC</h3>
+                    <p class="font-semibold">Integrate AI Search</p>
+                    <p class="text-gray-600 text-sm">A card component has a figure, a body part...</p>
+                    <p class="text-gray-500 text-xs mt-2">Deadline: 1 April 2025</p>
+                    <button class="bg-blue-600 text-white px-3 py-1 rounded-lg mt-2" onclick="mc(this)">Complete</button>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-md">
+                    <h3 class="text-gray-500 text-sm">Polygon Tech</h3>
+                    <p class="font-semibold">Review Ami Probashi Site</p>
+                    <p class="text-gray-600 text-sm">A card component has a figure, a body part...</p>
+                    <p class="text-gray-500 text-xs mt-2">Deadline: 5 May 2025</p>
+                    <button class="bg-blue-600 text-white px-3 py-1 rounded-lg mt-2" onclick="mc(this)">Complete</button>
+                </div>
+            </div>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-md">
+            <p class="font-semibold">Activity Log</p>
+            <div id="activityLog" class="mt-2 text-sm text-gray-700"></div>
+            <button class="bg-purple-600 text-white px-4 py-2 rounded-lg mt-4" onclick="kellafote()">Clear History</button>
+        </div>
+    </div>
+    <div id="completionMessage" class="hidden fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-center items-center">
+        <div class="bg-white p-6 rounded-lg shadow-lg max-w-lg">
+            <h2 class="text-xl font-bold mb-4">Board Update Successfully</h2>
+            <button onclick="cecam()" class="mt-4 bg-blue-600 text-white px-4 py-2 rounded-lg">OK</button>
+        </div>
+    </div>
+    <div id="blogModal" class="hidden fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-center items-center">
+        <div class="bg-white p-6 rounded-lg shadow-lg max-w-lg">
+            <h2 class="text-xl font-bold mb-4">Required Questions & Answers</h2>
+            <ul class="list-disc pl-5">
+                <li><strong>Q1:</strong> What are the different ways to select an element in the DOM?<br>
+                    <span class="text-gray-600">Ans: document.getElementById(), document.querySelector(), document.getElementsByClassName(), document.getElementsByTagName(), etc.</span>
+                </li>
+                <li><strong>Q2:</strong> What is the difference between innerHTML, innerText, and textContent?<br>
+                    <span class="text-gray-600">Ans: innerHTML returns HTML content, innerText returns only visible text, textContent returns all text including hidden ones.</span>
+                </li>
+                <li><strong>Q3:</strong> What is event delegation in the DOM?<br>
+                    <span class="text-gray-600">Ans: Event delegation allows us to attach a single event listener to a parent element that manages events for its child elements.</span>
+                </li>
+                <li><strong>Q4:</strong> What is event bubbling in the DOM?<br>
+                    <span class="text-gray-600">Ans: Event bubbling is a process where an event triggered on a child element propagates up through its parent elements.</span>
+                </li>
+                <li><strong>Q5:</strong> How do you create, add, and remove elements using JavaScript?<br>
+                    <span class="text-gray-600">Ans: document.createElement(), parentElement.appendChild(), element.removeChild() are used to create, add, and remove elements.</span>
+                </li>
+            </ul>
+            <button onclick="jaw()" class="mt-4 bg-red-500 text-white px-4 py-2 rounded-lg">Close</button>
+        </div>
+    </div>
+
 </body>
 </html>
